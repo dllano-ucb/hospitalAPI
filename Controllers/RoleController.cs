@@ -8,11 +8,11 @@ using System;
 
 [ApiController]
 [Route("api/[controller]")]
-public class RolesController : ControllerBase
+public class RoleController : ControllerBase
 {
     private readonly PgDbContext _context;
 
-    public RolesController(PgDbContext context)
+    public RoleController(PgDbContext context)
     {
         _context = context;
     }
@@ -24,7 +24,7 @@ public class RolesController : ControllerBase
         return await _context.Roles.ToListAsync();
     }
 
-    // GET: api/Roles/{id}
+    // GET: api/Role/{id}
     [HttpGet("{id}")]
     public async Task<ActionResult<Role>> GetRole(int id)
     {
@@ -37,7 +37,7 @@ public class RolesController : ControllerBase
         return role;
     }
 
-    // POST: api/Roles
+    // POST: api/Role
     [HttpPost]
     public async Task<ActionResult<Role>> CreateRole(Role role)
     {
@@ -47,7 +47,7 @@ public class RolesController : ControllerBase
         return CreatedAtAction(nameof(GetRole), new { id = role.Id }, role);
     }
 
-    // PUT: api/Roles/{id}
+    // PUT: api/Role/{id}
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateRole(int id, Role role)
     {
@@ -87,7 +87,7 @@ public class RolesController : ControllerBase
         return NoContent();
     }
 
-    // DELETE: api/Roles/{id}
+    // DELETE: api/Role/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteRole(int id)
     {
