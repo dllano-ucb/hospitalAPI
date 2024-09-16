@@ -4,9 +4,15 @@ project.lock.json
 .DS_Store
 *.pyc
 nupkg/
+*.idx
+bin
+obj
 
 # Visual Studio Code
 .vscode/
+
+# Package settings
+*.json
 
 # Rider
 .idea/

@@ -9,6 +9,17 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<PgDbContext>(options =>
     options.UseNpgsql(connectionString));
 
+// Add CORS policy to allow requests from your Flutter web app
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:8080") // Replace with your Flutter app's URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 // Add controllers
 builder.Services.AddControllers();
 
@@ -26,6 +37,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+// Apply CORS policy
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 
